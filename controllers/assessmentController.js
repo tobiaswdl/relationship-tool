@@ -30,11 +30,13 @@ class ScoringEngine {
   }
   
   static classifyAttachmentStyle(anxietyScore, avoidanceScore) {
-    if (anxietyScore < 3 && avoidanceScore < 3) {
+    const { anxiety: anxietyThreshold, avoidance: avoidanceThreshold } = config.thresholds;
+    
+    if (anxietyScore < anxietyThreshold && avoidanceScore < avoidanceThreshold) {
       return 'secure';
-    } else if (anxietyScore >= 3 && avoidanceScore < 3) {
+    } else if (anxietyScore >= anxietyThreshold && avoidanceScore < avoidanceThreshold) {
       return 'anxious';
-    } else if (anxietyScore < 3 && avoidanceScore >= 3) {
+    } else if (anxietyScore < anxietyThreshold && avoidanceScore >= avoidanceThreshold) {
       return 'avoidant';
     } else {
       return 'fearful';
@@ -52,11 +54,12 @@ class ValidationEngine {
   }
   
   static checkDefensiveResponding(responses) {
-    // Check for overly positive responses on reverse-coded items
-    const reverseQuestions = config.questions.filter(q => q.reverse);
-    const highResponses = reverseQuestions.filter(q => responses[q.id] >= 4).length;
+    // Check Q30 specifically for defensive responding
+    const defensiveQuestion = config.questions.find(q => q.id === 30);
+    if (!defensiveQuestion) return false;
     
-    return highResponses >= reverseQuestions.length * 0.8; // 80% threshold
+    const response = responses[30];
+    return response >= config.thresholds.defensiveResponding;
   }
   
   static validateAllQuestionsAnswered(responses) {
@@ -154,13 +157,13 @@ const assessmentController = {
       // Generate notes
       const notes = [];
       if (!attentionCheckPassed) {
-        notes.push('Attention check failed - results may be unreliable');
+        notes.push('Attention check failed - please focus more carefully on the questions');
       }
       if (defensiveResponding) {
-        notes.push('Potential defensive responding detected');
+        notes.push('Your answers may be overly positive. Consider being more honest about your feelings.');
       }
       if (disorganizationFlag) {
-        notes.push('High disorganization score - may indicate push-pull dynamics');
+        notes.push('Your responses also show some push–pull or erratic attachment tendencies.');
       }
       
       // Update assessment with results

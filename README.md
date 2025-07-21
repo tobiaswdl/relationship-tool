@@ -94,21 +94,23 @@ The assessment consists of 30 questions across 4 subscales:
 
 1. **Anxiety (Q1-Q8)**: Measures worry about abandonment and rejection
 2. **Avoidance (Q9-Q16)**: Measures discomfort with intimacy and dependence
-3. **Disorganization (Q17-Q24)**: Measures confusion and trauma-related responses
-4. **Secure (Q25-Q30)**: Reverse-coded items measuring comfort with relationships
+3. **Disorganized/Fearful (Q17-Q22)**: Measures mixed feelings and push-pull dynamics
+4. **Secure (Q23-Q28)**: Measures comfort with intimacy and emotional support
+5. **Attention Check (Q29)**: Quality control question
+6. **Defensive Responding Check (Q30)**: Detects overly positive responses
 
 ### Scoring Logic
 
-- **Primary Classification**: Based on Anxiety vs. Avoidance scores
-  - Secure: Low anxiety (< 3) and low avoidance (< 3)
-  - Anxious: High anxiety (≥ 3) and low avoidance (< 3)
-  - Avoidant: Low anxiety (< 3) and high avoidance (≥ 3)
-  - Fearful: High anxiety (≥ 3) and high avoidance (≥ 3)
+- **Primary Classification**: Based on Anxiety vs. Avoidance scores (threshold: 3.5)
+  - Secure: Low anxiety (< 3.5) and low avoidance (< 3.5)
+  - Anxious: High anxiety (≥ 3.5) and low avoidance (< 3.5)
+  - Avoidant: Low anxiety (< 3.5) and high avoidance (≥ 3.5)
+  - Fearful/Disorganized: High anxiety (≥ 3.5) and high avoidance (≥ 3.5)
 
 ### Validation Features
 
-- **Attention Check**: Question 15 must be answered with value 3
-- **Defensive Responding**: Detects overly positive responses on reverse-coded items
+- **Attention Check**: Question 29 must be answered with value 4 ("Agree")
+- **Defensive Responding**: Question 30 ≥ 4 triggers a warning about overly positive responses
 - **Disorganization Flag**: Triggers when disorganization score ≥ 3.5
 
 ## Frontend Flow
