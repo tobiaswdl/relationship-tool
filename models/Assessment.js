@@ -69,7 +69,7 @@ const assessmentSchema = new mongoose.Schema({
     primaryStyle: {
       type: String,
       enum: ['secure', 'anxious', 'avoidant', 'fearful'],
-      required: true
+      required: false
     },
     disorganizationFlag: {
       type: Boolean,

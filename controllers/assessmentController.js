@@ -1,7 +1,8 @@
 const Assessment = require('../models/Assessment');
 const config = require('../config/assessment');
 const { AppError } = require('../middleware/errorHandler');
-const { v4: uuidv4 } = require('crypto');
+const { v4: uuidv4 } = require('uuid');
+const chalk = require('chalk'); // Add at the top if not present
 
 // Scoring engine
 class ScoringEngine {
@@ -125,11 +126,14 @@ const assessmentController = {
   // Submit assessment responses and get results
   submitAssessment: async (req, res, next) => {
     try {
+      // Colorful and labeled log
+      console.log(`\x1b[36m[Server]\x1b[0m submit called with sessionId= \x1b[33m${req.body.sessionId}\x1b[0m`);
       const { sessionId, responses, userAgent, ipAddress } = req.body;
       
       // Find the assessment session
       const assessment = await Assessment.findOne({ sessionId });
       if (!assessment) {
+        console.error(`\x1b[31m[Error]\x1b[0m Assessment session not found for sessionId=\x1b[33m${sessionId}\x1b[0m`);
         throw new AppError('Assessment session not found', 404);
       }
       

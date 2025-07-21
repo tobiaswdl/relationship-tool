@@ -21,8 +21,14 @@ const validateAssessmentResponses = [
     .withMessage('User agent must be a string'),
   
   body('ipAddress')
-    .optional()
-    .isIP()
+    .optional({ nullable: true })
+    .custom((value) => {
+      if (value === undefined || value === null || value === '') return true;
+      // Only validate if not empty
+      return typeof value === 'string' && (
+        /^\\d+\\.\\d+\\.\\d+\\.\\d+$/.test(value) || /^[a-fA-F0-9:]+$/.test(value)
+      );
+    })
     .withMessage('IP address must be a valid IP')
 ];
 
