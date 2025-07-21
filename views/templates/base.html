@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Attachment Style Assessment{% endblock %}</title>
+    <meta name="description" content="{% block description %}Test your attachment style with our comprehensive assessment tool{% endblock %}">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/styles.css">
+    {% block extra_css %}{% endblock %}
+    
+    <!-- Meta tags -->
+    <meta property="og:title" content="{% block og_title %}Attachment Style Assessment{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Test your attachment style with our comprehensive assessment tool{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.url }}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="/" class="nav-logo">Relationship Tool</a>
+                <div class="nav-menu">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/about" class="nav-link">About</a>
+                    <a href="/contact" class="nav-link">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Relationship Tool. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="/app.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html> 
