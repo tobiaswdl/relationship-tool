@@ -80,6 +80,17 @@ app.use(morgan('combined'));
 // Static files
 app.use(express.static('public'));
 
+// Set view engine for EJS
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
+
+const assessmentConfig = require('./config/assessment');
+
+// Serve the quiz page dynamically
+app.get('/quiz', (req, res) => {
+  res.render('quiz', { questions: assessmentConfig.questions });
+});
+
 // Routes
 app.use('/api', routes);
 

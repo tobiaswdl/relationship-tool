@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attachment Style Quiz</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div id="app">
+        <section id="question-screen" class="screen active card">
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <div class="question-header">
+                <h2 id="question-page-title">Questionnaire</h2>
+                <span id="question-progress"></span>
+            </div>
+            <form id="question-form">
+                <div id="question-list"></div>
+                <div class="navigation">
+                    <button id="prev-btn" class="btn btn-secondary" type="button">Previous</button>
+                    <button id="next-btn" class="btn btn-primary" type="button">Next</button>
+                </div>
+            </form>
+        </section>
+    </div>
+    <script id="questions-data" type="application/json"><%- JSON.stringify(questions) %></script>
+    <script src="/quiz.js"></script>
+</body>
+</html> 
